@@ -27,20 +27,20 @@ const Login = ({ history }) => {
       setUserData(dataUser)
       const findUser = dataUser.find(v => v.username === user.username)
       if (!findUser) {
-        alert('Tài khoản này không tồn tại')
+        alert(t('login.warning.empty'))
       }
       else if (findUser.role === 0 && findUser.password === user.password) {
-        alert('admin')
+        alert(t('admin'))
         sessionStorage.setItem('userData', JSON.stringify(findUser))
-        window.location.pathname = "/admin"
+        window.location.pathname = "/admin/users"
       }
       else if (findUser.role === 1 && findUser.password === user.password) {
-        alert('Đăng nhập thành công')
-        sessionStorage.setItem('userData', JSON.stringify(findUser))
+        alert(t('login.warning.success'))
+        sessionStorage.setItem('userData', JSON.stringify(findUser.username))
         window.location.pathname = ('/')
       }
       else {
-        alert('Mật khẩu của bạn không đúng')
+        alert(t('login.warning.wrong'))
       }
 
     };
@@ -48,14 +48,11 @@ const Login = ({ history }) => {
 
   }
 
-
-
   const handleChange = (e) => {
     const target = e.target;
     const { name, value } = target;
     setUser({ ...user, [name]: value });
   }
-
 
   return (
     <React.Fragment>
@@ -106,10 +103,8 @@ const Login = ({ history }) => {
           </div>
         </div>
       </section>
-
     </React.Fragment>
   )
 }
-
 
 export default Login

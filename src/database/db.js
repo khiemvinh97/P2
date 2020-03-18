@@ -28,7 +28,7 @@ export const getProduct = (id) => {
 }
 
 export const updateUser = (user) => {
-  return axios.put(`${url}/user/${user.id}`,user)
+  return axios.put(`${url}/user/${user.id}`, user)
     .then(res => {
       return res.data
     })
@@ -36,7 +36,7 @@ export const updateUser = (user) => {
 }
 
 export const updateProduct = (product) => {
-  return axios.put(`${url}/products/${product.id}`,product)
+  return axios.put(`${url}/products/${product.id}`, product)
     .then(res => {
       return res.data
     })
@@ -45,24 +45,48 @@ export const updateProduct = (product) => {
 
 export const updateHistory = (history) => {
   axios.post(`${url}/carts`, history)
-   .then(res => {
-     console.log(res)
-   })
-   .catch(error => console.log(error))
+    .then(res => {
+      console.log(res)
+    })
+    .catch(error => console.log(error))
 }
 
 export const updatePro = (product) => {
- return axios.put(`${url}/products/${product.id}`, product)
-   .then(res => {
-     console.log(res)
-   })
-   .catch(error => console.log(error))
+  return axios.put(`${url}/products/${product.id}`, product)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(error => console.log(error))
 }
 
 export const getCartsByUser = (username) => {
   return axios.get(`${url}/carts?username=${username}`)
     .then(res => {
       return res.data
+    })
+    .catch(error => console.log(error))
+}
+
+export const deleteUser = (user) => {
+  return axios.delete(`${url}/user/${user.id}`)
+    .then(res => {
+      return res.data
+    })
+    .catch(error => console.log(error))
+}
+
+export const getAdmin = () => {
+  return axios.get(`${url}/user/1`)
+    .then(res => {
+      return res.data
+    })
+    .catch(error => console.log(error))
+}
+
+export const getByUser = (username) => {
+  return axios.get(`${url}/user?username=${username}`)
+    .then(res => {
+      return res.data[0]
     })
     .catch(error => console.log(error))
 }
